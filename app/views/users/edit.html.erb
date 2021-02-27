@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>User info</h2>
+      <% if @user.errors.any? %>
+      <div>
+        <ul style="color: red">       <!--↓エラーが１つの時はerrorにしたい-->
+          <h3><%= @user.errors.count %>errors prohibited this obj from being saved:</h3><br>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+
+
+      <%= form_with model: @user, local:true do |f| %>
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control name" %>
+        <%= f.label :image %>
+        <%= f.attachment_field :profile_image, class: "form-control-file user_image" %>
+        <%= f.label :introduction %>
+        <%= f.text_area :introduction, class: "form-control introduction" %>
+        </br>
+        <%= f.submit "Update User", class: "btn btn-secondary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+</br>
+</br>
